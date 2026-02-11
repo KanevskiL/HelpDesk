@@ -1,0 +1,27 @@
+{
+  "name": "helpdesk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KanevskiL/HelpDesk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/KanevskiL/HelpDesk/issues"
+  },
+  "homepage": "https://github.com/KanevskiL/HelpDesk#readme",
+  "dependencies": {
+    "lodash": "^4.17.23"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

@@ -1,0 +1,51 @@
+=== ШРИФТЫ (TYPOGRAPHY) ===
+Основной шрифт: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
+
+=== ЦВЕТА БРЕНДА (BRAND COLORS) ===
+Primary (Основной): #0f3460
+Primary Dark (Темный основной): #0a2647
+Primary Light (Светлый основной): #1a4d7a
+Accent (Акцентный): #00b4d8
+Accent Hover (Акцентный при наведении): #0096b8
+Accent Soft (Акцентный полупрозрачный): rgba(0, 180, 216, 0.12)
+Soft Blue (Мягкий синий): #bbdefb
+
+=== ФОН И ПОВЕРХНОСТИ (BACKGROUND & SURFACES) ===
+Background (Общий фон): #f8fafc
+Background Hero (Градиент главного экрана): linear-gradient(165deg, #0f3460 0%, #1a4d7a 45%, #0a2647 100%)
+Surface (Поверхность/Карточки): #ffffff
+Surface Hover (Поверхность при наведении): #fafbfc
+
+=== ЦВЕТА ТЕКСТА (TEXT COLORS) ===
+Text Main (Основной текст): #1e293b
+Text Muted (Второстепенный текст): #64748b
+Text Light (Светлый текст на темном фоне): rgba(255, 255, 255, 0.9)
+
+=== ЛИНИИ И ГРАНИЦЫ (BORDERS) ===
+Border (Стандартная граница): #e2e8f0
+Border Hover (Граница при наведении): #cbd5e1
+
+=== ЦВЕТА ИКОНОК (ICON COLORS) ===
+Icon Blue BG (Синий фон иконки): #e0f2fe
+Icon Blue (Синяя иконка): #0284c7
+Icon Green BG (Зеленый фон иконки): #dcfce7
+Icon Green (Зеленая иконка): #15803d
+Icon Gray BG (Серый фон иконки): #f1f5f9
+Icon Gray (Серая иконка): #475569
+
+=== РАДИУСЫ СКРУГЛЕНИЯ (BORDER RADIUS) ===
+Radius Small: 10px
+Radius Medium: 14px
+Radius Large: 20px
+Radius Icon: 16px
+
+=== ТЕНИ (SHADOWS) ===
+Shadow Small: 0 2px 8px rgba(15, 52, 96, 0.06)
+Shadow Medium: 0 8px 24px rgba(15, 52, 96, 0.08)
+Shadow Large: 0 16px 48px rgba(15, 52, 96, 0.12)
+Shadow Hover: 0 12px 32px rgba(15, 52, 96, 0.15)
+
+=== ПЕРЕХОДЫ И АНИМАЦИИ (TRANSITIONS) ===
+Transition Fast: 0.2s ease
+Transition Normal: 0.25s ease
+Transition Slow: 0.4s ease

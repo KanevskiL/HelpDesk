@@ -1,120 +1,106 @@
 /**
  * HelpDesk — главная страница центра поддержки
- * Обработка поиска и анимация карточек категорий
  */
 
 document.addEventListener('DOMContentLoaded', initHelpDesk);
 
 function initHelpDesk() {
-    initSearch();
-    animateCategoryCards();
-    initFAQToggles();
+  initSearch();
+  initBurgerMenu();
+  initFaqAccordion();
+  animateCategoryCards();
+  animateFaqItems();
 }
 
-/**
- * Инициализация поиска
- */
+function initFaqAccordion() {
+  document.querySelectorAll('.faq-link').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const item = link.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach((i) => i.classList.remove('open'));
+      document.querySelectorAll('.faq-link').forEach((l) => l.setAttribute('aria-expanded', 'false'));
+      if (!isOpen) {
+        item.classList.add('open');
+        link.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+}
+
+function initBurgerMenu() {
+  const burgerBtn = document.getElementById('burgerBtn');
+  const navbarMenu = document.getElementById('navbarMenu');
+  if (!burgerBtn || !navbarMenu) return;
+
+  burgerBtn.addEventListener('click', () => {
+    const isOpen = navbarMenu.classList.contains('open');
+    navbarMenu.classList.toggle('open');
+    burgerBtn.classList.toggle('active');
+    burgerBtn.setAttribute('aria-expanded', !isOpen);
+    burgerBtn.setAttribute('aria-label', isOpen ? 'Открыть меню' : 'Закрыть меню');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 767 && navbarMenu.classList.contains('open')) {
+      if (!burgerBtn.contains(e.target) && !navbarMenu.contains(e.target)) {
+        navbarMenu.classList.remove('open');
+        burgerBtn.classList.remove('active');
+        burgerBtn.setAttribute('aria-expanded', 'false');
+        burgerBtn.setAttribute('aria-label', 'Открыть меню');
+      }
+    }
+  });
+}
+
 function initSearch() {
-    const searchBtn = document.getElementById('searchBtn');
-    const searchInput = document.getElementById('searchInput');
-    if (!searchBtn || !searchInput) return;
+  const searchBtn = document.getElementById('searchBtn');
+  const searchInput = document.getElementById('searchInput');
+  if (!searchBtn || !searchInput) return;
 
-    const performSearch = () => {
-        const query = searchInput.value.trim();
+  const performSearch = () => {
+    const query = searchInput.value.trim();
+    if (query) {
+      console.log('Поиск:', query);
+      alert(`Ищем ответ на: "${query}"...`);
+      searchInput.classList.remove('is-invalid');
+    } else {
+      searchInput.classList.add('is-invalid');
+      setTimeout(() => searchInput.classList.remove('is-invalid'), 1000);
+    }
+  };
 
-        if (query) {
-            console.log('Поиск:', query);
-            // пока простая имитация поиска — в дальнейшем можно подключить локальный FAQ/JSON
-            searchInput.classList.remove('is-invalid');
-            const searchResult = document.getElementById('searchResult');
-            if (searchResult) {
-                searchResult.innerHTML = `<div class="alert alert-info">Поиск по запросу «${query}» выполнен (демо).</div>`;
-            } else {
-                alert(`Ищем ответ на: "${query}"...`);
-            }
-        } else {
-            searchInput.classList.add('is-invalid');
-            setTimeout(() => {
-                searchInput.classList.remove('is-invalid');
-            }, 1000);
-        }
-    };
-
-    searchBtn.addEventListener('click', performSearch);
-
-    searchInput.addEventListener('keypress', (event) => {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            performSearch();
-        }
-    });
+  searchBtn.addEventListener('click', performSearch);
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      performSearch();
+    }
+  });
 }
 
-/**
- * Анимация появления карточек категорий
- */
 function animateCategoryCards() {
-    const cards = document.querySelectorAll('.categories__card');
-    
-    cards.forEach((card, index) => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(30px)';
-        
-        setTimeout(() => {
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-        }, index * 150);
-    });
+  const cards = document.querySelectorAll('.category-card');
+  cards.forEach((card, i) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, i * 150);
+  });
 }
 
-/**
- * Инициализация всплывающих ответов для секции FAQ
- */
-/**
- * Показывает/скрывает ответ внизу страницы. При открытии другого — закрывает предыдущий.
- */
-function initFAQToggles(){
-    const links = document.querySelectorAll('.faq__link');
-    if(!links.length) return;
-
-    links.forEach((link) => {
-        link.setAttribute('role','button');
-        link.setAttribute('aria-expanded','false');
-
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const li = link.closest('.faq__item');
-            if(!li) return;
-            const answer = li.querySelector('.faq__answer');
-            if(!answer) return;
-
-            const isOpen = !answer.hasAttribute('hidden');
-
-            // Close all other answers
-            document.querySelectorAll('.faq__item--open').forEach(openLi => {
-                if(openLi !== li){
-                    openLi.classList.remove('faq-item--open');
-                    const openAnswer = openLi.querySelector('.faq__answer');
-                    const openLink = openLi.querySelector('.faq__link');
-                    if(openAnswer) openAnswer.setAttribute('hidden','');
-                    if(openLink) openLink.setAttribute('aria-expanded','false');
-                }
-            });
-
-            if(isOpen){
-                answer.setAttribute('hidden','');
-                li.classList.remove('faq__item--open');
-                link.setAttribute('aria-expanded','false');
-            } else {
-                answer.removeAttribute('hidden');
-                li.classList.add('faq__item--open');
-                link.setAttribute('aria-expanded','true');
-                // ensure answer is visible below the question
-                answer.scrollIntoView({behavior: 'smooth', block: 'nearest'});
-            }
-        });
-
-        link.addEventListener('keydown', (e)=>{ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); link.click(); } });
-    });
+function animateFaqItems() {
+  const items = document.querySelectorAll('.faq-item');
+  items.forEach((item, i) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-20px)';
+    setTimeout(() => {
+      item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      item.style.opacity = '1';
+      item.style.transform = 'translateX(0)';
+    }, 400 + i * 100);
+  });
 }

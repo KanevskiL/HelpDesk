@@ -1,315 +1,52 @@
-/* --- Переменные темы --- */
-:root {
-    /* Цвета бренда */
-    --color-primary: #0f3460;
-    --color-primary-dark: #0a2647;
-    --color-primary-light: #1a4d7a;
-    --color-accent: #00b4d8;
-    --color-accent-hover: #0096b8;
-    --color-accent-soft: rgba(0, 180, 216, 0.12);
-    --color-soft-blue: #bbdefb;
-    
-    /* Фон и поверхности */
-    --color-background: #f8fafc;
-    --color-background-hero: linear-gradient(165deg, #0f3460 0%, #1a4d7a 45%, #0a2647 100%);
-    --color-surface: #ffffff;
-    --color-surface-hover: #fafbfc;
-    
-    /* Текст */
-    --color-text: #1e293b;
-    --color-text-muted: #64748b;
-    --color-text-light: rgba(255, 255, 255, 0.9);
-    
-    /* Границы */
-    --color-border: #e2e8f0;
-    --color-border-hover: #cbd5e1;
-    
-    /* Иконки категорий */
-    --icon-blue-bg: #e0f2fe;
-    --icon-blue: #0284c7;
-    --icon-green-bg: #dcfce7;
-    --icon-green: #15803d;
-    --icon-gray-bg: #f1f5f9;
-    --icon-gray: #475569;
-    
-    /* Радиусы скругления */
-    --radius-small: 10px;
-    --radius-medium: 14px;
-    --radius-large: 20px;
-    --radius-icon: 16px;
-    
-    /* Тени */
-    --shadow-small: 0 2px 8px rgba(15, 52, 96, 0.06);
-    --shadow-medium: 0 8px 24px rgba(15, 52, 96, 0.08);
-    --shadow-large: 0 16px 48px rgba(15, 52, 96, 0.12);
-    --shadow-hover: 0 12px 32px rgba(15, 52, 96, 0.15);
-    
-    /* Переходы */
-    --transition-fast: 0.2s ease;
-    --transition-normal: 0.25s ease;
-    --transition-slow: 0.4s ease;
+
+@import url('variables.css');
+@import url('header.css');
+@import url('main.css');
+@import url('footer.css');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-/* --- Базовые стили --- */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background-color: var(--color-background);
-    color: var(--color-text);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: var(--line-height-base);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* --- Навигация --- */
-.navbar {
-    background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: var(--shadow-small);
-    backdrop-filter: blur(10px);
+main.main-content {
+  flex: 1;
 }
 
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-.navbar-brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.625rem;
-    text-decoration: none;
-    color: var(--color-primary);
-    font-size: 1.4rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    transition: color var(--transition-normal);
+/* Утилита: скрытый визуально, но доступный для скринридеров */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-
-.navbar-brand:hover {
-    color: var(--color-primary-dark);
-}
-
-.navbar-brand i {
-    font-size: 1.5rem;
-    color: var(--color-accent);
-    transition: transform var(--transition-normal);
-}
-
-.navbar-brand:hover i {
-    transform: scale(1.1);
-}
-
-.btn-primary {
-    background: var(--color-primary);
-    color: var(--color-surface);
-    border: none;
-    padding: 0.625rem 1.5rem;
-    font-weight: 600;
-    font-size: 0.95rem;
-    border-radius: var(--radius-small);
-    transition: all var(--transition-normal);
-    cursor: pointer;
-}
-
-.btn-primary:hover {
-    background: var(--color-primary-dark);
-    color: var(--color-surface);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-medium);
-}
-
-/* --- Hero секция --- */
-.hero {
-    position: relative;
-    padding: 5rem 0 6rem;
-    overflow: hidden;
-    margin-bottom: 3rem;
-}
-
-.hero-background {
-    position: absolute;
-    inset: 0;
-    background: var(--color-background-hero);
-    opacity: 0.98;
-}
-
-.hero-background::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    opacity: 0.7;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero-title {
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    color: var(--color-surface);
-    letter-spacing: -0.03em;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-}
-
-.hero-subtitle {
-    font-size: 1.15rem;
-    color: var(--color-text-light);
-    margin-bottom: 2.5rem;
-    font-weight: 400;
-}
-
-/* --- Поиск --- */
-.search-wrapper {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.search-box {
-    display: flex;
-    background: var(--color-surface);
-    border-radius: var(--radius-medium);
-    box-shadow: var(--shadow-large);
-    overflow: hidden;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    transition: box-shadow var(--transition-normal);
-}
-
-.search-box:focus-within {
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-accent);
-}
-
-.search-input {
-    flex: 1;
-    padding: 1.125rem 1.5rem;
-    font-size: 1rem;
-    font-family: inherit;
-    border: none;
-    background: transparent;
-    color: var(--color-text);
-    outline: none;
-}
-
-.search-input::placeholder {
-    color: var(--color-text-muted);
-    opacity: 0.7;
-}
-
-.search-input.is-invalid {
-    box-shadow: inset 0 0 0 2px #dc2626;
-}
-
-.btn-search {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--color-accent);
-    color: var(--color-surface);
-    border: none;
-    padding: 1.125rem 2rem;
-    font-weight: 600;
-    font-family: inherit;
-    font-size: 1rem;
-    white-space: nowrap;
-    transition: all var(--transition-normal);
-    cursor: pointer;
-}
-
-.btn-search:hover {
-    background: var(--color-accent-hover);
-    transform: scale(1.02);
-}
-
-.btn-search i {
-    font-size: 1.1rem;
-}
-
-/* --- Основной контент --- */
-.main-content {
-    padding: 2rem 0 5rem;
-}
-
-/* --- Карточки категорий (BEM: .categories__card) --- */
-.categories{margin-bottom:4rem}
-.categories__card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-large);padding:2.5rem 2rem;text-align:center;cursor:pointer;transition:all var(--transition-normal);height:100%;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden}
-.categories__card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--color-accent),var(--color-primary-light));transform:scaleX(0);transition:transform var(--transition-normal)}
-.categories__card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);border-color:var(--color-accent);background:var(--color-surface-hover)}
-.categories__card:hover::before{transform:scaleX(1)}
-.categories__card:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
-.categories__figure{margin:0 0 1rem 0;width:100%;display:flex;align-items:center;justify-content:center}
-.categories__figure img{max-width:100%;height:auto;border-radius:6px}
-.categories__title{font-size:1.35rem;font-weight:700;color:var(--color-text);margin-bottom:0.5rem;letter-spacing:-0.01em}
-.categories__description{font-size:0.95rem;color:var(--color-text-muted);margin:0;line-height:1.5}
-
-/* --- FAQ секция (BEM: .faq__*) --- */
-.faq{margin-top:1rem}
-.faq__title{font-size:1.5rem;font-weight:700;color:var(--color-text);margin-bottom:1.5rem;letter-spacing:-0.02em}
-.faq__list{list-style:none;padding:0;margin:0}
-.faq__item{margin-bottom:0.75rem;border-radius:var(--radius-medium);background:var(--color-surface);border:1px solid var(--color-border);overflow:hidden;transition:all var(--transition-normal)}
-.faq__item:hover{border-color:var(--color-accent);box-shadow:var(--shadow-medium);transform:translateX(4px)}
-.faq__link{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;text-decoration:none;color:var(--color-text);font-weight:500;transition:all var(--transition-normal)}
-.faq__link:hover{color:var(--color-primary);background:var(--color-accent-soft)}
-.faq__link-text{flex:1;padding-right:1rem;font-size:1rem}
-.faq__link-icon{color:var(--color-accent);font-size:1.2rem;flex-shrink:0;transition:transform var(--transition-normal)}
-.faq__link:hover .faq__link-icon{transform:translateX(6px)}
-
-/* Skip link */
-.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
-.skip-link:focus{left:10px;top:10px;width:auto;height:auto;padding:8px;background:#fff;border:1px solid #ccc;border-radius:6px}
-
-/* Footer (now solid brand color) */
-.site-footer{background:#0f3460;color:#fff;padding:28px 0;margin-top:1px}
-.site-footer .footer-text{margin:0;text-align:center;font-weight:500}
-.site-footer .footer-top{font-size:1.15rem;font-weight:700;margin:0;line-height:1}
-.site-footer .footer-bottom{font-size:0.95rem;margin:6px 0 0;color:rgba(255,255,255,0.92)}
-.site-footer .container{text-align:center}
-
-/* Footer BEM layout */
-.footer__container{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
-.footer__col{flex:1;min-width:200px}
-.footer__col--center{text-align:center}
-.footer__col--right{text-align:right}
-.footer__col--left{text-align:left}
-.footer__col--bottom-right{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end}
-
-.footer__address{font-style:normal;color:rgba(255,255,255,0.95);line-height:1.4}
-.footer__address a{color:var(--color-accent);text-decoration:underline}
-
-/* Footer brand styling: use hero-like style (weight, letter-spacing, color) but smaller size */
-.footer__brand{font-weight:700;letter-spacing:-0.03em;color:var(--color-surface);margin:0;font-size:1.7rem}
-.footer__note{margin:6px 0 0;color:rgba(255,255,255,0.92)}
-
-.footer__nav{display:block}
-.footer__nav-list{list-style:none;padding:0;margin:0;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
-.footer__nav-link{color:rgba(255,255,255,0.92);text-decoration:none;font-weight:500}
-.footer__nav-link:hover{text-decoration:underline;color:var(--color-accent)}
-
-/* Make spacing between FAQ and Support consistent with categories -> FAQ spacing */
-.sidebar{margin-top:calc(4rem + 1rem)}
-
-/* FAQ answers: hidden by default, visible when un-hidden or parent has modifier */
-/* FAQ answer (BEM) */
-.faq__answer{padding:1.25rem 1.5rem;color:var(--color-text);background:var(--color-surface);border-top:1px solid var(--color-border);box-sizing:border-box}
-.faq__answer[hidden]{display:none}
-.faq__item--open .faq__answer{display:block}
-
-/* Visual cue for expanded question (BEM) */
-.faq__item--open .faq__link{background:var(--color-accent-soft)}
-.faq__item--open .faq__link .faq__link-icon{transform:rotate(90deg)}
-
-/* Make sure category figures are centered and images responsive */
-.categories__figure{margin:0 0 1rem 0;width:100%;display:flex;align-items:center;justify-content:center}
-.categories__figure img{max-width:100%;height:auto;border-radius:6px}
-

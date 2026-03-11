@@ -241,166 +241,75 @@ body {
     padding: 2rem 0 5rem;
 }
 
-/* --- Карточки категорий --- */
-.categories {
-    margin-bottom: 4rem;
-}
+/* --- Карточки категорий (BEM: .categories__card) --- */
+.categories{margin-bottom:4rem}
+.categories__card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-large);padding:2.5rem 2rem;text-align:center;cursor:pointer;transition:all var(--transition-normal);height:100%;display:flex;flex-direction:column;align-items:center;position:relative;overflow:hidden}
+.categories__card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--color-accent),var(--color-primary-light));transform:scaleX(0);transition:transform var(--transition-normal)}
+.categories__card:hover{transform:translateY(-8px);box-shadow:var(--shadow-hover);border-color:var(--color-accent);background:var(--color-surface-hover)}
+.categories__card:hover::before{transform:scaleX(1)}
+.categories__card:focus-visible{outline:3px solid var(--color-accent);outline-offset:2px}
+.categories__figure{margin:0 0 1rem 0;width:100%;display:flex;align-items:center;justify-content:center}
+.categories__figure img{max-width:100%;height:auto;border-radius:6px}
+.categories__title{font-size:1.35rem;font-weight:700;color:var(--color-text);margin-bottom:0.5rem;letter-spacing:-0.01em}
+.categories__description{font-size:0.95rem;color:var(--color-text-muted);margin:0;line-height:1.5}
 
-.category-card {
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-large);
-    padding: 2.5rem 2rem;
-    text-align: center;
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
+/* --- FAQ секция (BEM: .faq__*) --- */
+.faq{margin-top:1rem}
+.faq__title{font-size:1.5rem;font-weight:700;color:var(--color-text);margin-bottom:1.5rem;letter-spacing:-0.02em}
+.faq__list{list-style:none;padding:0;margin:0}
+.faq__item{margin-bottom:0.75rem;border-radius:var(--radius-medium);background:var(--color-surface);border:1px solid var(--color-border);overflow:hidden;transition:all var(--transition-normal)}
+.faq__item:hover{border-color:var(--color-accent);box-shadow:var(--shadow-medium);transform:translateX(4px)}
+.faq__link{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 1.5rem;text-decoration:none;color:var(--color-text);font-weight:500;transition:all var(--transition-normal)}
+.faq__link:hover{color:var(--color-primary);background:var(--color-accent-soft)}
+.faq__link-text{flex:1;padding-right:1rem;font-size:1rem}
+.faq__link-icon{color:var(--color-accent);font-size:1.2rem;flex-shrink:0;transition:transform var(--transition-normal)}
+.faq__link:hover .faq__link-icon{transform:translateX(6px)}
 
-.category-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-accent), var(--color-primary-light));
-    transform: scaleX(0);
-    transition: transform var(--transition-normal);
-}
+/* Skip link */
+.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:10px;top:10px;width:auto;height:auto;padding:8px;background:#fff;border:1px solid #ccc;border-radius:6px}
 
-.category-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--color-accent);
-    background: var(--color-surface-hover);
-}
+/* Footer (now solid brand color) */
+.site-footer{background:#0f3460;color:#fff;padding:28px 0;margin-top:1px}
+.site-footer .footer-text{margin:0;text-align:center;font-weight:500}
+.site-footer .footer-top{font-size:1.15rem;font-weight:700;margin:0;line-height:1}
+.site-footer .footer-bottom{font-size:0.95rem;margin:6px 0 0;color:rgba(255,255,255,0.92)}
+.site-footer .container{text-align:center}
 
-.category-card:hover::before {
-    transform: scaleX(1);
-}
+/* Footer BEM layout */
+.footer__container{display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap}
+.footer__col{flex:1;min-width:200px}
+.footer__col--center{text-align:center}
+.footer__col--right{text-align:right}
+.footer__col--left{text-align:left}
+.footer__col--bottom-right{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-end}
 
-.category-card:focus-visible {
-    outline: 3px solid var(--color-accent);
-    outline-offset: 2px;
-}
+.footer__address{font-style:normal;color:rgba(255,255,255,0.95);line-height:1.4}
+.footer__address a{color:var(--color-accent);text-decoration:underline}
 
-.category-icon {
-    width: 72px;
-    height: 72px;
-    border-radius: var(--radius-icon);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    transition: all var(--transition-normal);
-    position: relative;
-}
+/* Footer brand styling: use hero-like style (weight, letter-spacing, color) but smaller size */
+.footer__brand{font-weight:700;letter-spacing:-0.03em;color:var(--color-surface);margin:0;font-size:1.7rem}
+.footer__note{margin:6px 0 0;color:rgba(255,255,255,0.92)}
 
-.category-card:hover .category-icon {
-    transform: scale(1.1) rotate(5deg);
-}
+.footer__nav{display:block}
+.footer__nav-list{list-style:none;padding:0;margin:0;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.footer__nav-link{color:rgba(255,255,255,0.92);text-decoration:none;font-weight:500}
+.footer__nav-link:hover{text-decoration:underline;color:var(--color-accent)}
 
-.category-icon-blue {
-    background: var(--icon-blue-bg);
-    color: var(--icon-blue);
-}
+/* Make spacing between FAQ and Support consistent with categories -> FAQ spacing */
+.sidebar{margin-top:calc(4rem + 1rem)}
 
-.category-icon-green {
-    background: var(--icon-green-bg);
-    color: var(--icon-green);
-}
+/* FAQ answers: hidden by default, visible when un-hidden or parent has modifier */
+/* FAQ answer (BEM) */
+.faq__answer{padding:1.25rem 1.5rem;color:var(--color-text);background:var(--color-surface);border-top:1px solid var(--color-border);box-sizing:border-box}
+.faq__answer[hidden]{display:none}
+.faq__item--open .faq__answer{display:block}
 
-.category-icon-gray {
-    background: var(--icon-gray-bg);
-    color: var(--icon-gray);
-}
+/* Visual cue for expanded question (BEM) */
+.faq__item--open .faq__link{background:var(--color-accent-soft)}
+.faq__item--open .faq__link .faq__link-icon{transform:rotate(90deg)}
 
-.category-title {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--color-text);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.01em;
-}
-
-.category-description {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-    margin: 0;
-    line-height: 1.5;
-}
-
-/* --- FAQ секция --- */
-.faq {
-    margin-top: 1rem;
-}
-
-.faq-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-text);
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
-}
-
-.faq-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.faq-item {
-    margin-bottom: 0.75rem;
-    border-radius: var(--radius-medium);
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    overflow: hidden;
-    transition: all var(--transition-normal);
-}
-
-.faq-item:hover {
-    border-color: var(--color-accent);
-    box-shadow: var(--shadow-medium);
-    transform: translateX(4px);
-}
-
-.faq-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.25rem 1.5rem;
-    text-decoration: none;
-    color: var(--color-text);
-    font-weight: 500;
-    transition: all var(--transition-normal);
-}
-
-.faq-link:hover {
-    color: var(--color-primary);
-    background: var(--color-accent-soft);
-}
-
-.faq-link-text {
-    flex: 1;
-    padding-right: 1rem;
-    font-size: 1rem;
-}
-
-.faq-link-icon {
-    color: var(--color-accent);
-    font-size: 1.2rem;
-    flex-shrink: 0;
-    transition: transform var(--transition-normal);
-}
-
-.faq-link:hover .faq-link-icon {
-    transform: translateX(6px);
-}
+/* Make sure category figures are centered and images responsive */
+.categories__figure{margin:0 0 1rem 0;width:100%;display:flex;align-items:center;justify-content:center}
+.categories__figure img{max-width:100%;height:auto;border-radius:6px}
 

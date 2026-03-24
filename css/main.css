@@ -3,6 +3,12 @@
   padding: var(--spacing-xl) 0 var(--spacing-3xl);
 }
 
+
+section:active {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-hover);
+}
+
 /* Categories */
 .categories {
   margin-bottom: var(--spacing-3xl);
@@ -245,4 +251,64 @@
   .faq-answer > div {
     padding: 0 1.5rem 1.5rem;
   }
+}
+
+/* Add FAQ Form */
+.add-faq {
+  margin-top: 2.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contact-form > div {
+  margin-bottom: 15px;
+}
+
+.contact-form input[type="text"],
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  transition: all var(--transition-normal);
+}
+
+.contact-form input[type="text"],
+.contact-form textarea {
+  color: var(--color-text);
+}
+
+.contact-form input[type="text"]::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.contact-form input[type="text"]:hover,
+.contact-form textarea:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-medium);
+}
+
+.contact-form input[type="text"]:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.contact-form input[type="text"]:active,
+.contact-form textarea:active {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-hover);
+}
+
+.contact-form textarea {
+  min-height: 100px;
+  resize: vertical;
 }

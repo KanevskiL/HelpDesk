@@ -1,9 +1,16 @@
+/**
+ * Основной файл стилей — ЛР №4
+ * Импорт модулей и базовые стили
+ * Mobile-first подход
+ */
 
+/* Импорт по порядку: переменные → компоненты */
 @import url('variables.css');
 @import url('header.css');
 @import url('main.css');
 @import url('footer.css');
 
+/* ========== Reset / Базовые стили ========== */
 *,
 *::before,
 *::after {

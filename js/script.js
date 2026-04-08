@@ -1,4 +1,3 @@
-
 let currentEditingItem = null;
 let currentEditingOriginalQuestion = null;
 
@@ -66,9 +65,6 @@ async function loadFaqApiAndRender() {
   }
 }
 
-/**
- * Элемент FAQ из API (без кнопок редактирования).
- */
 function createApiFaqListItem(faq) {
   const safeId = String(faq.id).replace(/\W/g, '-');
   const li = document.createElement('li');
@@ -215,14 +211,14 @@ function addFaqToDOM(faq) {
     </div>
   `;
 
-  const deleteBtn = li.querySelector('.delete-btn, .faq-action-btn--delete');
+  const deleteBtn = li.querySelector('.faq-action-btn--delete');
   deleteBtn.addEventListener('click', function (e) {
     e.preventDefault();
     li.remove();
     removeFaqFromStorage(faq.question);
   });
 
-  const editBtn = li.querySelector('.edit-btn, .faq-action-btn--edit');
+  const editBtn = li.querySelector('.faq-action-btn--edit');
   editBtn.addEventListener('click', function (e) {
     e.preventDefault();
 
@@ -294,7 +290,7 @@ function initBurgerMenu() {
   });
 
   document.addEventListener('click', (e) => {
-    if (window.innerWidth <= 767 && navbarMenu.classList.contains('open')) {
+    if (window.innerWidth < 768 && navbarMenu.classList.contains('open')) {
       if (!burgerBtn.contains(e.target) && !navbarMenu.contains(e.target)) {
         navbarMenu.classList.remove('open');
         burgerBtn.classList.remove('active');

@@ -1,6 +1,3 @@
-/**
- * Загрузка FAQ с Custom JSON API (GET, JSON).
- */
 async function fetchFAQ() {
   const { BASE_URL, API_KEY } = HelpDeskConfig;
 

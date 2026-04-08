@@ -1,8 +1,3 @@
-/**
- * Кэширование данных FAQ в localStorage.
- * @param {string} key
- * @param {unknown} data — сериализуется через JSON.stringify
- */
 function saveToCache(key, data) {
   try {
     localStorage.setItem(key, JSON.stringify(data));
@@ -12,10 +7,6 @@ function saveToCache(key, data) {
   }
 }
 
-/**
- * @param {string} key
- * @returns {unknown | null} Распарсенные данные или null, если ключа нет или JSON невалиден
- */
 function getFromCache(key) {
   try {
     const raw = localStorage.getItem(key);

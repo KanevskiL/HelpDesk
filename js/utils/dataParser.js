@@ -1,12 +1,3 @@
-/**
- * Ответ GET …/faq от My JSON Server — массив объектов { id, question, answer }.
- * Возвращает тот же смысл плюс source: 'Custom API'.
- */
-
-/**
- * @param {unknown} raw — массив из API
- * @returns {Array<{ id: number | string, question: string, answer: string, source: string }>}
- */
 function parseFAQData(raw) {
   if (!Array.isArray(raw)) {
     return [];
@@ -14,7 +5,7 @@ function parseFAQData(raw) {
 
   return raw
     .map((item, index) => {
-      const row = /** @type {{ id?: unknown, question?: unknown, answer?: unknown }} */ (item);
+      const row = item && typeof item === 'object' ? item : {};
       return {
         id: row.id != null ? row.id : index,
         question: String(row.question ?? '').trim(),

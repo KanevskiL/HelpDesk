@@ -1,7 +1,3 @@
-/**
- * Вспомогательные функции для sessionStorage (сессионные данные вкладки).
- * Для ЛР: базовое сохранение/чтение строковых или JSON-данных.
- */
 function saveToSession(key, data) {
   try {
     sessionStorage.setItem(key, typeof data === 'string' ? data : JSON.stringify(data));

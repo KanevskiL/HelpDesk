@@ -34,16 +34,18 @@
     <div class="container hero-content">
       <h1 class="hero-title">Как мы можем помочь?</h1>
       <p class="hero-subtitle">Поиск по базе знаний и техническим руководствам</p>
-      <div class="search-wrapper">
-        <div class="search-box">
-          <label for="searchInput" class="visually-hidden">Поиск по базе знаний</label>
-          <input type="search" id="searchInput" class="search-input" placeholder="Начните вводить ваш вопрос..." autocomplete="off">
-          <button type="button" class="btn-search" id="searchBtn" aria-label="Выполнить поиск">
-            <img src="images/icon-search.svg" alt="" class="btn-search-icon">
-            <span>Найти</span>
-          </button>
+      <form id="faqSearchForm" class="hero-search-form" role="search" action="#" method="get" aria-label="Поиск по вопросам FAQ">
+        <div class="search-wrapper">
+          <div class="search-box">
+            <label for="searchInput" class="visually-hidden">Поиск по вопросам и ответам FAQ</label>
+            <input type="search" id="searchInput" name="q" class="search-input" placeholder="Начните вводить ваш вопрос..." autocomplete="off">
+            <button type="submit" class="btn-search" id="searchBtn" aria-label="Выполнить поиск">
+              <img src="images/icon-search.svg" alt="" class="btn-search-icon">
+              <span>Найти</span>
+            </button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </header>
 
@@ -78,35 +80,39 @@
 
       <section class="faq" aria-labelledby="faq-heading">
         <h2 id="faq-heading" class="faq-title">Популярные темы</h2>
-        <ul class="faq-list">
-          <li class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-            <a href="#" class="faq-link" aria-expanded="false" aria-controls="faq-answer-1" id="faq-link-1">
-              <span class="faq-link-text" itemprop="name">Как восстановить доступ к панели управления?</span>
-              <img src="images/icon-chevron.svg" alt="" class="faq-link-icon">
-            </a>
-            <div class="faq-answer" id="faq-answer-1" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-              <div itemprop="text">Чтобы восстановить доступ, нажмите «Забыли пароль» на странице входа и следуйте инструкциям для сброса пароля. Проверьте папку «Спам», если письмо не пришло.</div>
-            </div>
-          </li>
-          <li class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-            <a href="#" class="faq-link" aria-expanded="false" aria-controls="faq-answer-2" id="faq-link-2">
-              <span class="faq-link-text" itemprop="name">Где найти ключи API для бота?</span>
-              <img src="images/icon-chevron.svg" alt="" class="faq-link-icon">
-            </a>
-            <div class="faq-answer" id="faq-answer-2" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-              <div itemprop="text">Ключи API находятся в разделе «Интеграции» → «API-ключи». Создайте новый ключ, установите права доступа и сохраните его в безопасном месте.</div>
-            </div>
-          </li>
-          <li class="faq-item" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
-            <a href="#" class="faq-link" aria-expanded="false" aria-controls="faq-answer-3" id="faq-link-3">
-              <span class="faq-link-text" itemprop="name">Лимиты бесплатного тарифного плана</span>
-              <img src="images/icon-chevron.svg" alt="" class="faq-link-icon">
-            </a>
-            <div class="faq-answer" id="faq-answer-3" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
-              <div itemprop="text">Бесплатный тариф включает 3 проекта и до 1000 запросов в месяц. Для дополнительных возможностей просмотрите платные планы в разделе «Тарифы».</div>
-            </div>
-          </li>
-        </ul>
+        <p class="faq-hint">Поиск выполняется по сохранённым на устройстве вопросам (без повторных запросов к серверу).</p>
+        <div id="faq-container">
+          <p id="faq-status" class="faq-status visually-hidden" role="status" aria-live="polite"></p>
+          <ul class="faq-list" id="faqList">
+            <li class="faq-item faq-item--builtin" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+              <a href="#" class="faq-link" aria-expanded="false" aria-controls="faq-answer-1" id="faq-link-1">
+                <span class="faq-link-text" itemprop="name">Как восстановить доступ к панели управления?</span>
+                <img src="images/icon-chevron.svg" alt="" class="faq-link-icon">
+              </a>
+              <div class="faq-answer" id="faq-answer-1" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <div itemprop="text">Чтобы восстановить доступ, нажмите «Забыли пароль» на странице входа и следуйте инструкциям для сброса пароля. Проверьте папку «Спам», если письмо не пришло.</div>
+              </div>
+            </li>
+            <li class="faq-item faq-item--builtin" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+              <a href="#" class="faq-link" aria-expanded="false" aria-controls="faq-answer-2" id="faq-link-2">
+                <span class="faq-link-text" itemprop="name">Где найти ключи API для бота?</span>
+                <img src="images/icon-chevron.svg" alt="" class="faq-link-icon">
+              </a>
+              <div class="faq-answer" id="faq-answer-2" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <div itemprop="text">Ключи API находятся в разделе «Интеграции» → «API-ключи». Создайте новый ключ, установите права доступа и сохраните его в безопасном месте.</div>
+              </div>
+            </li>
+            <li class="faq-item faq-item--builtin" itemprop="mainEntity" itemscope itemtype="https://schema.org/Question">
+              <a href="#" class="faq-link" aria-expanded="false" aria-controls="faq-answer-3" id="faq-link-3">
+                <span class="faq-link-text" itemprop="name">Лимиты бесплатного тарифного плана</span>
+                <img src="images/icon-chevron.svg" alt="" class="faq-link-icon">
+              </a>
+              <div class="faq-answer" id="faq-answer-3" itemprop="acceptedAnswer" itemscope itemtype="https://schema.org/Answer">
+                <div itemprop="text">Бесплатный тариф включает 3 проекта и до 1000 запросов в месяц. Для дополнительных возможностей просмотрите платные планы в разделе «Тарифы».</div>
+              </div>
+            </li>
+          </ul>
+        </div>
         <section class="add-faq" aria-labelledby="add-faq-heading">
             <h2 id="add-faq-heading" class="faq-title">Добавить свой вопрос</h2>
             <form id="addFaqForm" class="contact-form">
@@ -136,6 +142,11 @@
     </div>
   </footer>
 
+  <script src="js/api/config.js"></script>
+  <script src="js/storage/localStorage.js"></script>
+  <script src="js/storage/sessionStorage.js"></script>
+  <script src="js/utils/dataParser.js"></script>
+  <script src="js/api/apiService.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
